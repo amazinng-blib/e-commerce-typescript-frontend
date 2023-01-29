@@ -3,13 +3,13 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import AdminRoutes from './components/AdminRoutes';
 import Layout from './components/Layout';
 import {
   AdminDashBoard,
   CartScreen,
   Home,
   Login,
+  ShippingAddressScreen,
   Signup,
   SingleProductScreen,
 } from './screens';
@@ -18,6 +18,10 @@ import {
   OrderScreen,
   ProductsScreen,
 } from './screens/adminscreens';
+import {
+  AdminRoutes,
+  LoginAuthenticator,
+} from './components/routeAuthenticators';
 
 type Props = {};
 
@@ -31,6 +35,14 @@ const App = (props: Props) => {
           <Route path="/login" element={<Login />} />{' '}
           <Route path="/cart" element={<CartScreen />} />{' '}
           <Route path="/product/:id" element={<SingleProductScreen />} />{' '}
+          <Route
+            path="/shipping"
+            element={
+              <LoginAuthenticator>
+                <ShippingAddressScreen />
+              </LoginAuthenticator>
+            }
+          />
           <Route
             path="/dashboard"
             element={
@@ -72,14 +84,6 @@ const App = (props: Props) => {
               </AdminRoutes>
             }
           />
-          {/* <Route
-            path="/dashboard/create"
-            element={
-              <AdminRoutes>
-                <CreateProducts />{' '}
-              </AdminRoutes>
-            }
-          /> */}
         </Routes>
       </Layout>
       {/* <ToastContainer /> */}
