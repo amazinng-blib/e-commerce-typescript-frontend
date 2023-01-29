@@ -9,7 +9,6 @@ import {
   CartScreen,
   Home,
   Login,
-  ShippingAddressScreen,
   Signup,
   SingleProductScreen,
 } from './screens';
@@ -34,15 +33,14 @@ const App = (props: Props) => {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />{' '}
           <Route path="/cart" element={<CartScreen />} />{' '}
-          <Route path="/product/:id" element={<SingleProductScreen />} />{' '}
           <Route
-            path="/shipping"
+            path="/product/:id"
             element={
               <LoginAuthenticator>
-                <ShippingAddressScreen />
+                <SingleProductScreen />
               </LoginAuthenticator>
             }
-          />
+          />{' '}
           <Route
             path="/dashboard"
             element={
@@ -84,6 +82,14 @@ const App = (props: Props) => {
               </AdminRoutes>
             }
           />
+          {/* <Route
+            path="/dashboard/create"
+            element={
+              <AdminRoutes>
+                <CreateProducts />{' '}
+              </AdminRoutes>
+            }
+          /> */}
         </Routes>
       </Layout>
       {/* <ToastContainer /> */}
